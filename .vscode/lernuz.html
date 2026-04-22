@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lernuz — Smarter Schools. Connected Systems.</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+ 
+:root{
+  --primary:#4C47E5;
+  --primary-light:#7B78FF;
+  --primary-dark:#3630C4;
+  --bg:#F0F5FF;
+  --bg2:#FEFEFF;
+  --text:#0A0B1E;
+  --text-muted:#5A5E7A;
+  --accent-yellow:#F5C118;
+  --accent-yellow-light:#FFF5B0;
+  --accent-yellow-mid:#FDE96A;
+  --accent-green:#3ECFA0;
+  --glass:rgba(255,255,255,0.6);
+  --glass-border:rgba(76,71,229,0.15);
+  --glow:rgba(76,71,229,0.25);
+  --glow-strong:rgba(76,71,229,0.45);
+  --card-bg:rgba(255,255,255,0.85);
+  --shadow:0 8px 40px rgba(76,71,229,0.10);
+  --shadow-lg:0 20px 80px rgba(76,71,229,0.18);
+  --shadow-yellow:0 8px 32px rgba(245,193,24,0.28);
+  --radius:16px;
+  --radius-lg:24px;
+}
+ 
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg2);color:var(--text);overflow-x:hidden;line-height:1.6}
+ 
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(254,254,255,0.75);backdrop-filter:blur(20px);border-bottom:1px solid rgba(76,71,229,0.08)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-mark{width:36px;height:36px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.nav-logo-mark::after{content:'';position:absolute;inset:-4px;background:linear-gradient(135deg,var(--primary-light),var(--primary));border-radius:12px;z-index:-1}
+.nav-logo-mark svg{width:20px;height:20px;fill:white}
+.nav-logo-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;color:var(--text);letter-spacing:-0.5px;font-weight:800}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;color:var(--text-muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.btn-ghost{padding:8px 20px;font-size:14px;color:var(--primary);background:transparent;border:1.5px solid rgba(76,71,229,0.3);border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;font-weight:500}
+.btn-ghost:hover{background:rgba(76,71,229,0.06);border-color:var(--primary)}
+.btn-primary{padding:9px 22px;font-size:14px;color:#1A1400;background:var(--accent-yellow);border:none;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:700;transition:all .25s;box-shadow:0 4px 20px rgba(245,193,24,0.4)}
+.btn-primary:hover{background:#FFD225;transform:translateY(-1px);box-shadow:0 8px 30px rgba(245,193,24,0.5)}
+ 
+/* HERO */
+.hero{min-height:100vh;padding:140px 48px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#F0F5FF 0%,#FEFEFF 55%,#FFFBEA 100%)}
+.hero-bg-glow{position:absolute;top:20%;right:10%;width:600px;height:600px;background:radial-gradient(circle,rgba(76,71,229,0.12) 0%,transparent 70%);border-radius:50%;pointer-events:none;animation:pulse 8s ease-in-out infinite}
+.hero-bg-glow2{position:absolute;top:60%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(62,207,160,0.08) 0%,transparent 70%);border-radius:50%;pointer-events:none;animation:pulse 10s ease-in-out infinite 3s}
+.hero-bg-yellow{position:absolute;bottom:10%;right:5%;width:340px;height:340px;background:radial-gradient(circle,rgba(245,193,24,0.18) 0%,transparent 70%);border-radius:50%;pointer-events:none;animation:pulse 12s ease-in-out infinite 6s}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.7}}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(76,71,229,0.08);border:1px solid rgba(76,71,229,0.2);border-radius:50px;font-size:12px;font-weight:500;color:var(--primary);margin-bottom:24px;letter-spacing:0.5px}
+.hero-tag-dot{width:6px;height:6px;background:var(--accent-green);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+ 
+.hero-heading{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,4.8vw,62px);line-height:1.08;letter-spacing:-2px;margin-bottom:24px;color:var(--text);font-weight:800}
+
+ 
+.hero-sub{font-size:17px;color:var(--text-muted);max-width:480px;margin-bottom:36px;font-weight:300;line-height:1.7}
+.hero-input-wrap{background:white;border:1.5px solid rgba(76,71,229,0.18);border-radius:60px;padding:10px 10px 10px 20px;display:flex;align-items:center;gap:12px;max-width:440px;box-shadow:0 8px 40px rgba(76,71,229,0.12),0 0 0 4px rgba(76,71,229,0.04);margin-bottom:20px;transition:all .25s}
+.hero-input-wrap:focus-within{border-color:var(--primary);box-shadow:0 8px 40px rgba(76,71,229,0.2),0 0 0 4px rgba(76,71,229,0.08)}
+.hero-input-wrap input{flex:1;border:none;outline:none;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--text);background:transparent}
+.hero-input-wrap input::placeholder{color:#9CA3C8}
+.hero-input-send{width:38px;height:38px;background:var(--accent-yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0}
+.hero-input-send:hover{background:#FFD225;transform:scale(1.05)}
+.hero-input-send svg{width:16px;height:16px;fill:#1A1400}
+.hero-suggest{display:flex;gap:8px;flex-wrap:wrap}
+.suggest-chip{padding:6px 14px;background:white;border:1px solid rgba(76,71,229,0.15);border-radius:50px;font-size:12px;color:var(--text-muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+.suggest-chip:hover{border-color:var(--primary);color:var(--primary);background:rgba(76,71,229,0.04)}
+ 
+/* HERO RIGHT */
+.hero-visual{position:relative;height:580px}
+
+.img-label{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(76,71,229,0.45);font-size:13px;font-weight:500}
+.img-label svg{width:36px;height:36px;opacity:0.5}
+.img-label-sub{font-size:11px;color:rgba(76,71,229,0.3);font-weight:400}
+.hero-float-card{position:absolute;background:white;border-radius:14px;padding:14px 18px;box-shadow:0 12px 40px rgba(0,0,0,0.12),0 0 0 1px rgba(76,71,229,0.08);backdrop-filter:blur(10px);animation:float 6s ease-in-out infinite}
+.hero-float-card:nth-child(2){top:12%;left:0;animation-delay:0s;width:200px}
+.hero-float-card:nth-child(3){bottom:22%;left:-20px;animation-delay:2s;width:190px}
+.hero-float-card:nth-child(4){top:45%;right:-10px;animation-delay:4s;width:180px}
+@keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}
+.float-card-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;font-size:14px}
+.float-card-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px}
+.float-card-val{font-size:11px;color:var(--text-muted)}
+.float-progress{height:4px;background:#EEF;border-radius:4px;margin-top:8px;overflow:hidden}
+.float-progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-light));border-radius:4px;animation:progress 3s ease-in-out infinite alternate}
+@keyframes progress{from{width:45%}to{width:85%}}
+ 
+/* TRUST STRIP */
+.trust-strip{padding:48px;background:linear-gradient(90deg,#FEFEFF 0%,#FFFDF0 50%,#FEFEFF 100%);border-top:1px solid rgba(245,193,24,0.12);border-bottom:1px solid rgba(76,71,229,0.06)}
+.trust-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.trust-label{font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:0.8px;text-transform:uppercase;white-space:nowrap}
+.trust-logos{display:flex;align-items:center;gap:40px}
+.logo-slot{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .3s}
+.logo-box{width:120px;height:44px;background:linear-gradient(135deg,#F0F2FF,#E8ECFF);border:1px solid rgba(76,71,229,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;filter:grayscale(1);transition:all .3s}
+.logo-slot:hover .logo-box{filter:grayscale(0);border-color:rgba(76,71,229,0.3);box-shadow:0 4px 20px rgba(76,71,229,0.15)}
+.logo-box-text{font-size:13px;font-weight:600;color:var(--text-muted);letter-spacing:0.5px}
+.logo-slot-label{font-size:10px;color:var(--text-muted);opacity:0.6;font-weight:400}
+ 
+/* SECTION SHARED */
+section{padding:100px 48px}
+.section-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(76,71,229,0.07);border:1px solid rgba(76,71,229,0.15);border-radius:50px;font-size:11px;font-weight:600;color:var(--primary);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.section-heading{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-1.5px;margin-bottom:18px;font-weight:800}
+.section-sub{font-size:16px;color:var(--text-muted);max-width:500px;line-height:1.7;font-weight:300}
+ 
+/* AI SECTION */
+.ai-section{background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 100%)}
+.ai-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ai-chat-placeholder{background:white;border-radius:var(--radius-lg);border:1px solid rgba(76,71,229,0.1);overflow:hidden;box-shadow:var(--shadow-lg)}
+.chat-topbar{padding:14px 20px;background:linear-gradient(90deg,rgba(76,71,229,0.06),rgba(76,71,229,0.03));border-bottom:1px solid rgba(76,71,229,0.08);display:flex;align-items:center;gap:10px}
+.chat-avatar{width:30px;height:30px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;font-weight:600}
+.chat-name{font-size:13px;font-weight:600;color:var(--text)}
+.chat-status{font-size:11px;color:var(--accent-green);font-weight:500}
+.chat-online-dot{width:6px;height:6px;background:var(--accent-green);border-radius:50%;display:inline-block;margin-right:4px}
+.chat-body{padding:24px 20px;display:flex;flex-direction:column;gap:16px;min-height:320px}
+.chat-msg{max-width:78%;padding:12px 16px;border-radius:16px;font-size:13px;line-height:1.55}
+.chat-msg.bot{background:rgba(76,71,229,0.06);border:1px solid rgba(76,71,229,0.1);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+.chat-msg.user{background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-msg.typing{display:flex;gap:4px;align-items:center;padding:14px 18px}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:var(--text-muted);animation:typing 1.4s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}
+.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px);opacity:0.6}}
+.chat-input-bar{padding:14px 16px;border-top:1px solid rgba(76,71,229,0.08);display:flex;gap:10px;align-items:center}
+.chat-input-bar input{flex:1;border:1px solid rgba(76,71,229,0.12);border-radius:50px;padding:8px 16px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;background:#FAFBFF;color:var(--text)}
+.chat-send-btn{width:34px;height:34px;background:var(--primary);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-send-btn svg{width:14px;height:14px;fill:white}
+ 
+/* FEATURES */
+.features-section{background:linear-gradient(180deg,var(--bg2) 0%,#FFFDF0 60%,var(--bg2) 100%)}
+.features-header{text-align:center;max-width:600px;margin:0 auto 60px}
+.features-header .section-sub{margin:0 auto}
+.features-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{background:white;border:1px solid rgba(76,71,229,0.08);border-radius:var(--radius-lg);padding:30px;transition:all .3s;position:relative;overflow:hidden;cursor:pointer}
+.feature-card:nth-child(3),.feature-card:nth-child(6){background:linear-gradient(145deg,#FFFEF5,#FFFBE0);border-color:rgba(245,193,24,0.2)}
+.feature-card:nth-child(3):hover,.feature-card:nth-child(6):hover{border-color:rgba(245,193,24,0.45);box-shadow:0 16px 60px rgba(245,193,24,0.18);transform:translateY(-4px)}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--primary-light));opacity:0;transition:opacity .3s}
+.feature-card:nth-child(3)::before,.feature-card:nth-child(6)::before{background:linear-gradient(90deg,var(--accent-yellow),#FFE066)}
+.feature-card:hover{border-color:rgba(76,71,229,0.2);box-shadow:0 16px 60px rgba(76,71,229,0.14);transform:translateY(-4px)}
+.feature-card:hover::before{opacity:1}
+.feature-card-glow{position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(76,71,229,0.1),transparent 70%);pointer-events:none;transition:all .3s}
+.feature-card:hover .feature-card-glow{opacity:1.5;transform:scale(1.3)}
+.feature-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:22px}
+.feature-title{font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px;letter-spacing:-0.3px}
+.feature-desc{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
+.feature-img-placeholder{background:linear-gradient(135deg,#F0F2FF,#E8ECFF);border-radius:10px;height:70px;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(76,71,229,0.4);font-weight:500;border:1px dashed rgba(76,71,229,0.15)}
+ 
+/* DASHBOARD SHOWCASE */
+.dashboard-section{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);text-align:center;position:relative;overflow:hidden}
+.dashboard-glow-bg{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(76,71,229,0.15) 0%,transparent 70%);pointer-events:none}
+.dashboard-placeholder{max-width:900px;margin:0 auto;background:linear-gradient(135deg,#E8ECFF 0%,#D8DFF8 50%,#E4E0FF 100%);border-radius:var(--radius-lg);border:1px solid rgba(76,71,229,0.15);aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;box-shadow:0 30px 100px rgba(76,71,229,0.22),0 0 0 1px rgba(76,71,229,0.08);position:relative;overflow:hidden}
+.dashboard-placeholder::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--primary),var(--primary-light),transparent)}
+.dashboard-mock-bar{position:absolute;top:0;left:0;right:0;height:40px;background:rgba(255,255,255,0.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,71,229,0.1);display:flex;align-items:center;padding:0 20px;gap:8px}
+.mock-bar-dot{width:10px;height:10px;border-radius:50%}
+.placeholder-icon-lg{font-size:40px;opacity:0.3;margin-top:40px}
+.placeholder-text-lg{font-size:15px;color:rgba(76,71,229,0.5);font-weight:500}
+.placeholder-text-sm{font-size:12px;color:rgba(76,71,229,0.3)}
+ 
+/* BANK SECTION */
+.bank-section{background:var(--bg2)}
+.bank-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.bank-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(245,200,66,0.12);border:1px solid rgba(245,200,66,0.3);border-radius:50px;font-size:12px;font-weight:600;color:#B8940A;margin-bottom:20px;letter-spacing:0.5px}
+.bank-img-placeholder{background:linear-gradient(135deg,#FFF8E8,#FFF3D0);border:1px solid rgba(245,200,66,0.25);border-radius:var(--radius-lg);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.bank-img-placeholder::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-yellow),transparent)}
+.hnb-badge-overlay{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);border-radius:8px;padding:6px 12px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#8B6914;border:1px solid rgba(245,200,66,0.25)}
+.hnb-dot{width:8px;height:8px;background:var(--accent-yellow);border-radius:50%}
+ 
+/* AD SYSTEM */
+.ad-section{background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 100%)}
+.ad-inner{max-width:1100px;margin:0 auto}
+.ad-dashboard{background:white;border:1px solid rgba(76,71,229,0.1);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)}
+.ad-topbar{padding:14px 24px;background:linear-gradient(90deg,rgba(76,71,229,0.05),rgba(76,71,229,0.02));border-bottom:1px solid rgba(76,71,229,0.08);display:flex;align-items:center;justify-content:space-between}
+.ad-topbar-title{font-size:14px;font-weight:600;color:var(--text)}
+.ad-topbar-badge{padding:4px 10px;background:rgba(76,71,229,0.08);border-radius:50px;font-size:11px;color:var(--primary);font-weight:600}
+.ad-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.ad-panel{padding:32px}
+.ad-panel:first-child{border-right:1px solid rgba(76,71,229,0.08)}
+.ad-panel-title{font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:16px}
+.ad-img-placeholder{background:linear-gradient(135deg,#F0F2FF,#E8ECFF);border:1px dashed rgba(76,71,229,0.2);border-radius:12px;height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-bottom:16px}
+.ad-banner-placeholder{background:linear-gradient(135deg,rgba(245,200,66,0.12),rgba(245,200,66,0.06));border:1px dashed rgba(245,200,66,0.35);border-radius:8px;height:60px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#B8940A;font-weight:500}
+.ad-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ad-stat{background:rgba(76,71,229,0.04);border-radius:10px;padding:14px}
+.ad-stat-val{font-size:22px;font-weight:700;color:var(--primary);font-family:'Instrument Serif',serif}
+.ad-stat-label{font-size:11px;color:var(--text-muted);font-weight:400;margin-top:2px}
+ 
+/* WORKFLOW */
+.workflow-section{background:var(--bg2);text-align:center}
+.workflow-steps{max-width:900px;margin:60px auto 0;display:flex;align-items:center;gap:0;position:relative}
+.workflow-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 20px;position:relative}
+.step-icon-box{width:72px;height:72px;background:white;border:2px solid rgba(76,71,229,0.12);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:var(--shadow);transition:all .3s;position:relative;cursor:pointer}
+.step-icon-box:hover{border-color:var(--primary);box-shadow:0 8px 30px rgba(76,71,229,0.2);transform:translateY(-4px)}
+.step-icon-box::after{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(76,71,229,0.1),transparent);opacity:0;transition:opacity .3s}
+.step-icon-box:hover::after{opacity:1}
+.step-label{font-size:14px;font-weight:600;color:var(--text)}
+.step-desc{font-size:12px;color:var(--text-muted);text-align:center;line-height:1.5}
+.step-connector{flex:0;width:60px;height:2px;background:linear-gradient(90deg,rgba(76,71,229,0.2),rgba(76,71,229,0.5));position:relative;margin-top:-32px}
+.step-connector::after{content:'▶';position:absolute;right:-6px;top:50%;transform:translateY(-50%);font-size:10px;color:rgba(76,71,229,0.4)}
+ 
+/* PREDICTIVE */
+.predictive-section{background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 100%);text-align:center}
+.predictive-search-demo{max-width:600px;margin:60px auto 0;position:relative}
+.predictive-bar{background:white;border:2px solid rgba(76,71,229,0.2);border-radius:60px;padding:16px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 40px rgba(76,71,229,0.15),0 0 0 6px rgba(76,71,229,0.05)}
+.predictive-icon{font-size:18px;opacity:0.6}
+.predictive-text{flex:1;text-align:left;font-size:15px;color:var(--text-muted)}
+.predictive-text strong{color:var(--primary)}
+.predictive-kbd{padding:4px 10px;background:rgba(76,71,229,0.06);border:1px solid rgba(76,71,229,0.15);border-radius:6px;font-size:11px;color:var(--text-muted)}
+.predictive-dropdown{background:white;border:1px solid rgba(76,71,229,0.12);border-radius:16px;margin-top:8px;overflow:hidden;box-shadow:0 12px 40px rgba(76,71,229,0.15)}
+.pred-option{padding:12px 20px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .2s}
+.pred-option:hover{background:rgba(76,71,229,0.04)}
+.pred-option:not(:last-child){border-bottom:1px solid rgba(76,71,229,0.05)}
+.pred-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.pred-label{font-size:14px;color:var(--text);flex:1;text-align:left}
+.pred-sublabel{font-size:11px;color:var(--text-muted)}
+.pred-badge{padding:3px 8px;background:rgba(76,71,229,0.08);border-radius:50px;font-size:10px;color:var(--primary);font-weight:600}
+ 
+/* METRICS */
+.metrics-section{background:linear-gradient(135deg,#2A1F00 0%,#1E1A60 40%,var(--primary-dark) 100%);color:white;position:relative;overflow:hidden}
+.metrics-section::before{content:'';position:absolute;top:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(245,193,24,0.18) 0%,transparent 70%);pointer-events:none}
+.metrics-section::after{content:'';position:absolute;bottom:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(245,193,24,0.12) 0%,transparent 70%);pointer-events:none}
+.metrics-inner{max-width:1000px;margin:0 auto}
+.metrics-inner .section-tag{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white}
+.metrics-inner .section-heading{color:white}
+.metrics-inner .section-sub{color:rgba(255,255,255,0.7)}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:60px;background:rgba(255,255,255,0.1);border-radius:var(--radius-lg);overflow:hidden}
+.metric-block{padding:40px;background:rgba(255,255,255,0.05);display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.metric-block:hover{background:rgba(255,255,255,0.1)}
+.metric-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.2)}
+.metric-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:48px;font-weight:800;line-height:1;color:var(--accent-yellow);letter-spacing:-2px}
+.metric-suffix{font-size:24px;color:rgba(245,193,24,0.6)}
+.metric-label{font-size:14px;color:rgba(255,255,255,0.7);font-weight:300}
+.metric-growth{font-size:12px;color:var(--accent-green);font-weight:600;display:flex;align-items:center;gap:4px}
+ 
+/* TESTIMONIALS */
+.testimonials-section{background:var(--bg2)}
+.testimonials-header{text-align:center;max-width:550px;margin:0 auto 60px}
+.testimonials-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:white;border:1px solid rgba(76,71,229,0.08);border-radius:var(--radius-lg);padding:28px;transition:all .3s;cursor:pointer}
+.testimonial-card:hover{box-shadow:var(--shadow-lg);border-color:rgba(76,71,229,0.2);transform:translateY(-3px)}
+.testimonial-stars{display:flex;gap:4px;margin-bottom:16px;font-size:14px;color:var(--accent-yellow)}
+.testimonial-text{font-size:15px;color:var(--text);line-height:1.65;font-style:italic;font-family:'Instrument Serif',serif;margin-bottom:20px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#E8ECFF,#D0D4FF);border:2px solid rgba(76,71,229,0.1);display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(76,71,229,0.4);font-weight:500;flex-shrink:0;overflow:hidden;text-align:center;line-height:1.2}
+.author-name{font-size:14px;font-weight:600;color:var(--text)}
+.author-role{font-size:12px;color:var(--text-muted)}
+ 
+/* CTA */
+.cta-section{background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 100%);padding:100px 48px}
+.cta-inner{max-width:1100px;margin:0 auto;text-align:center}
+.cta-heading{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,60px);line-height:1.1;letter-spacing:-1.5px;margin-bottom:18px}
+.cta-sub{font-size:17px;color:var(--text-muted);margin-bottom:60px;font-weight:300}
+.cta-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto}
+.cta-card{padding:40px;border-radius:var(--radius-lg);transition:all .3s;cursor:pointer;text-align:left;position:relative;overflow:hidden}
+.cta-card.schools{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white}
+.cta-card.banks{background:white;border:2px solid rgba(76,71,229,0.15);color:var(--text)}
+.cta-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.cta-card-icon{font-size:32px;margin-bottom:20px}
+.cta-card-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;margin-bottom:10px;letter-spacing:-0.8px;font-weight:800}
+.cta-card.schools .cta-card-title{color:white}
+.cta-card-desc{font-size:14px;line-height:1.6;margin-bottom:24px;opacity:0.8}
+.cta-btn{padding:12px 24px;border-radius:50px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;border:none}
+.cta-card.schools .cta-btn{background:var(--accent-yellow);color:#1A1400;box-shadow:0 4px 20px rgba(245,193,24,0.4)}
+.cta-card.banks .cta-btn{background:var(--primary);color:white;box-shadow:0 4px 20px rgba(76,71,229,0.3)}
+.cta-img-placeholder{position:absolute;bottom:0;right:0;width:100px;height:90px;background:rgba(255,255,255,0.08);border-radius:16px 0 0 0;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,0.3)}
+.cta-card.banks .cta-img-placeholder{background:rgba(76,71,229,0.05);color:rgba(76,71,229,0.2)}
+ 
+/* FOOTER */
+footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Instrument Serif',serif;font-size:20px;color:white;display:flex;align-items:center;gap:8px}
+.footer-mark{width:28px;height:28px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;color:white;font-weight:700}
+.footer-copy{font-size:13px;color:rgba(255,255,255,0.4)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:white}
+ 
+/* SCROLL FADE */
+.fade-in{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+ 
+/* Responsive tweaks */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:120px 24px 60px}
+  .hero-visual{display:none}
+  .ai-inner,.bank-inner{grid-template-columns:1fr;gap:40px}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .cta-cards{grid-template-columns:1fr}
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  section{padding:70px 24px}
+  .workflow-steps{flex-wrap:wrap;gap:24px}
+  .step-connector{display:none}
+  .testimonials-grid{grid-template-columns:1fr}
+  .trust-inner{flex-wrap:wrap;gap:20px}
+  .trust-logos{flex-wrap:wrap;gap:20px;justify-content:center}
+  .ad-body{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:20px;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center}
+}
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20"><path d="M3 4h6l2 4H3zM11 4h6l2 4h-6zM3 10h14l2 6H1z"/></svg>
+    </div>
+    <span class="nav-logo-text">Lernuz</span>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#ai">AI Tools</a>
+    <a href="#bank">Payments</a>
+    <a href="#metrics">Impact</a>
+    <a href="#testimonials">Stories</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn-ghost">Sign In</button>
+    <button class="btn-primary">Get Started →</button>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-bg-glow2"></div>
+  <div>
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Now live at St. Joseph's College Colombo</div>
+    <h1 class="hero-heading">
+      Smarter Schools.<br>
+      <span class="kinetic-word" style="color: #3630C4;">
+        <span>Connected Systems.</span>
+      </span><br>
+      Powered by Intelligence.
+    </h1>
+    <p class="hero-sub">Lernuz transforms how schools operate — from student management and attendance to AI-driven insights and seamless HNB Bank payments.</p>
+   
+    <div class="hero-suggest">
+      <div class="suggest-chip">📊 View attendance</div>
+      <div class="suggest-chip">💰 Fee status</div>
+      <div class="suggest-chip">📋 Generate report</div>
+      <div class="suggest-chip">🔔 Notifications</div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-placeholder">
+        <div class="img-label">
+            <img src="./images/stjosephcollege.jpg" alt="St Joseph College"
+                 style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
+          </div>
+    </div>
+    <!-- Float Card 1: Fee Payment -->
+    <div class="hero-float-card">
+      <div class="float-card-icon" style="background:rgba(76,71,229,0.1)">💳</div>
+      <div class="float-card-title">Fee Payment</div>
+      <div class="float-card-val">LKR 24,500 — Paid via HNB</div>
+      <div class="float-progress"><div class="float-progress-fill"></div></div>
+    </div>
+    <!-- Float Card 2: Attendance -->
+    <div class="hero-float-card">
+      <div class="float-card-icon" style="background:rgba(62,207,160,0.12)">✅</div>
+      <div class="float-card-title">Attendance</div>
+      <div class="float-card-val" style="color:var(--accent-green)">97.2% — Today's average</div>
+    </div>
+    <!-- Float Card 3: Notification -->
+    <div class="hero-float-card">
+      <div class="float-card-icon" style="background:rgba(245,200,66,0.12)">🔔</div>
+      <div class="float-card-title">New Notification</div>
+      <div class="float-card-val">Parent meeting — Mon, 9 AM</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <span class="trust-label">Trusted by</span>
+    <div class="trust-logos">
+      <div class="logo-slot">
+        <div class="logo-box"><span class="logo-box-text">🏫 School Logo</span></div>
+        <span class="logo-slot-label">St. Joseph's College</span>
+      </div>
+      <div class="logo-slot">
+        <div class="logo-box"><span class="logo-box-text">🏦 HNB Bank</span></div>
+        <span class="logo-slot-label">Hatton National Bank</span>
+      </div>
+      <div class="logo-slot">
+        <div class="logo-box"><span class="logo-box-text">🎓 Lernuz</span></div>
+        <span class="logo-slot-label">Platform Partner</span>
+      </div>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);max-width:200px;line-height:1.5">Powering smarter education ecosystems across Sri Lanka</div>
+  </div>
+</div>
+ 
+<!-- AI SECTION -->
+<section class="ai-section" id="ai">
+  <div class="ai-inner">
+    <div class="fade-in">
+      <div class="section-tag">Lernuz Plus</div>
+      <h2 class="section-heading">Learners Mentorship Program</h2>
+      <p class="section-sub">Lernuz connects students through a structured mentorship system — where senior students guide juniors, creating a safe space to learn, ask doubts, and grow together.</p>
+      <br><br>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:36px;height:36px;background:rgba(76,71,229,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🧠</div>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px">Structured mentor assignment</div>
+            <div style="font-size:13px;color:var(--text-muted)">Top-performing students are selected as mentors by teachers and assigned to support junior students from lower classes.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:36px;height:36px;background:rgba(62,207,160,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">📈</div>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px">Bridging the hesitation gap</div>
+            <div style="font-size:13px;color:var(--text-muted)">Students who feel shy or hesitant to ask questions in class can learn comfortably through peer mentorship.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div style="width:36px;height:36px;background:rgba(245,200,66,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">⚡</div>
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px">Anonymous doubt solving
+            </div>
+            <div style="font-size:13px;color:var(--text-muted)">Students can ask questions anonymously, and mentors respond without identities — removing fear, judgment, and inferiority complex.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in">
+        <div class="ai-chat-placeholder">
+          <div class="chat-topbar">
+            <div class="chat-avatar">M</div>
+            <div>
+              <div class="chat-name">Mentor</div>
+              <div class="chat-status"><span class="chat-online-dot"></span>Online & ready</div>
+            </div>
+          </div>
+      
+          <div class="chat-body">
+            <div class="chat-msg bot">
+              Hi! I'm your mentor. Feel free to ask anything — your identity is completely anonymous 😊
+            </div>
+      
+            <div class="chat-msg user">
+              I didn’t understand today's maths problem… can you explain step by step?
+            </div>
+      
+            <div class="chat-msg bot">
+              Of course! Let’s break it down simply 👇<br><br>
+              First, identify the formula used. Then substitute the values given in the question.<br><br>
+              If you want, I can solve the exact problem for you.
+            </div>
+      
+            <div class="chat-msg user">
+              Yes please… I always get confused in the second step.
+            </div>
+      
+            <div class="chat-msg bot">
+              No worries, that’s very common 👍<br><br>
+              I’ll show you an easier way to approach it so you don’t get stuck again.
+            </div>
+      
+            <div class="chat-msg typing">
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+            </div>
+          </div>
+      
+          <div class="chat-input-bar">
+            <input type="text" placeholder="Ask your mentor anonymously...">
+            <button class="chat-send-btn">
+              <svg viewBox="0 0 16 16" fill="white">
+                <path d="M15 8L1 2l3 6-3 6z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      
+        <div style="text-align:center;margin-top:14px;font-size:12px;color:rgba(76,71,229,0.4);font-style:italic">
+          ↑ Anonymous student–mentor conversation preview
+        </div>
+      </div>
+      
+  </div>
+</section>
+ 
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="features-header fade-in">
+    <div class="section-tag">✦ Platform Features</div>
+    <h2 class="section-heading">Everything your school needs, unified</h2>
+    <p class="section-sub">One intelligent platform replacing dozens of disconnected tools.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card fade-in">
+      <div class="feature-card-glow"></div>
+      <div class="feature-icon" style="background:rgba(76,71,229,0.1)">👤</div>
+      <div class="feature-title">Student Management</div>
+      <div class="feature-desc">Complete student profiles, academic history, health records, and family contacts in one unified view.</div>
+      <div class="feature-img-placeholder">Preview · Student Profile UI</div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-card-glow"></div>
+      <div class="feature-icon" style="background:rgba(62,207,160,0.1)">📅</div>
+      <div class="feature-title">Smart Attendance</div>
+      <div class="feature-desc">AI-powered biometric and QR-based attendance with real-time parent notifications and analytics.</div>
+      <div class="feature-img-placeholder">Preview · Attendance Dashboard</div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-card-glow"></div>
+      <div class="feature-icon" style="background:rgba(245,200,66,0.12)">💳</div>
+      <div class="feature-title">HNB Fee Payments</div>
+      <div class="feature-desc">Seamless fee collection via HNB Bank .</div>
+      <div class="feature-img-placeholder">Preview · Payment Flow UI</div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-card-glow"></div>
+      <div class="feature-icon" style="background:rgba(76,71,229,0.1)">📊</div>
+      <div class="feature-title">Academic Analytics</div>
+      <div class="feature-desc">Deep insights into student performance, class averages, and exam trends.</div>
+      <div class="feature-img-placeholder">Preview · Analytics Chart</div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-card-glow"></div>
+      <div class="feature-icon" style="background:rgba(168,85,247,0.1)">📱</div>
+      <div class="feature-title">Parent Portal</div>
+      <div class="feature-desc">Mobile-first parent app for real-time updates, messaging teachers, and viewing academic progress.</div>
+      <div class="feature-img-placeholder">Preview · Parent App Screen</div>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-card-glow"></div>
+      <div class="feature-icon" style="background:rgba(62,207,160,0.1)">🔔</div>
+      <div class="feature-title">Smart Notifications</div>
+      <div class="feature-desc">Contextual push alerts for parents, staff, and students — triggered by events, fees and other important information.</div>
+      <div class="feature-img-placeholder">Preview · Notification Feed</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- DASHBOARD SHOWCASE -->
+<section class="dashboard-section">
+  <div class="fade-in" style="max-width:700px;margin:0 auto 48px;text-align:center">
+    <div class="section-tag">✦ Platform Preview</div>
+    <h2 class="section-heading">A command center for modern schools</h2>
+    <p class="section-sub" style="margin:0 auto">Real-time visibility across every department — finance, academics, administration, and beyond.</p>
+  </div>
+  <div class="dashboard-glow-bg"></div>
+  <div class="dashboard-placeholder fade-in">
+    <div class="dashboard-mock-bar">
+      <div class="mock-bar-dot" style="background:#ff5f57"></div>
+      <div class="mock-bar-dot" style="background:#febc2e"></div>
+      <div class="mock-bar-dot" style="background:#28c840"></div>
+      <div style="flex:1;height:18px;background:rgba(76,71,229,0.06);border-radius:6px;margin-left:8px"></div>
+    </div>
+    <div class="placeholder-icon-lg">🖥️</div>
+    <div class="placeholder-text-lg">Dashboard Preview</div>
+    <div class="placeholder-text-sm">Insert Dashboard PNG / Figma export here • Recommended 1440×900px</div>
+  </div>
+</section>
+ 
+<!-- BANK SECTION -->
+<section class="bank-section" id="bank">
+  <div class="bank-inner">
+    <div class="fade-in">
+      <div class="bank-img-placeholder">
+        <div class="hnb-badge-overlay"><span class="hnb-dot"></span>HNB Bank Secured</div>
+        <div style="font-size:36px;opacity:0.3">💳</div>
+        <div style="font-size:14px;color:rgba(180,140,20,0.5);font-weight:500">Banking & Fee Awareness UI</div>
+        <div style="font-size:11px;color:rgba(180,140,20,0.35)">Insert Accounts Interface Preview • 4:3 ratio</div>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="bank-badge">🏦 HNB Bank Integration</div>
+      <h2 class="section-heading">Banking-grade trust, without handling transactions</h2>
+      <p class="section-sub">Lernuz connects schools with trusted banks to enable secure, transparent fee awareness — while payments continue through regular bank channels.</p>
+      <br>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border-radius:12px;border:1px solid rgba(76,71,229,0.08);box-shadow:var(--shadow)">
+          <span style="font-size:20px">⚡</span>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--text)">Timely fee reminders</div>
+            <div style="font-size:12px;color:var(--text-muted)">Parents receive updates on due dates, deadlines, and upcoming payments — ensuring nothing is missed.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border-radius:12px;border:1px solid rgba(76,71,229,0.08);box-shadow:var(--shadow)">
+          <span style="font-size:20px">🔐</span>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--text)">Bank-level trust & awareness</div>
+            <div style="font-size:12px;color:var(--text-muted)">Schools are connected with verified banks, giving confidence in secure, reliable fee handling outside the platform.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border-radius:12px;border:1px solid rgba(76,71,229,0.08);box-shadow:var(--shadow)">
+          <span style="font-size:20px">📱</span>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--text)">Clear fee breakdowns</div>
+            <div style="font-size:12px;color:var(--text-muted)">Parents can view detailed fee structures, pending amounts, and timelines — all in one place.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- AD SYSTEM -->
+<section class="ad-section">
+    <div class="ad-inner">
+      <div class="fade-in" style="max-width:600px;margin-bottom:48px">
+        <div class="section-tag">✦ Smart Advertising</div>
+        <h2 class="section-heading">A new visibility channel for schools</h2>
+        <p class="section-sub">Lernuz enables schools to showcase trusted bank and brand messages across key touchpoints — ensuring the right information reaches the right audience at the right time.</p>
+      </div>
+      <div class="ad-dashboard fade-in">
+        <div class="ad-topbar">
+          <div class="ad-topbar-title">📡 Advertising Dashboard — Admin View</div>
+          <div class="ad-topbar-badge">Live · Managed by Lernuz</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-panel">
+            <div class="ad-panel-title">Campaign Preview</div>
+            <div class="ad-img-placeholder">
+              <div style="font-size:28px;opacity:0.3">🖼️</div>
+              <div style="font-size:12px;color:rgba(76,71,229,0.4);font-weight:500">Ad Placement Preview</div>
+              <div style="font-size:10px;color:rgba(76,71,229,0.25)">Insert Ad Creative Screenshot</div>
+            </div>
+            <div class="ad-banner-placeholder">
+              ↑ Ad Banner — Displayed across selected pages
+            </div>
+          </div>
+          <div class="ad-panel">
+            <div class="ad-panel-title">Ad Controls</div>
+            <div class="ad-stats">
+              <div class="ad-stat">
+                <div class="ad-stat-val">Multi</div>
+                <div class="ad-stat-label">Page placements</div>
+              </div>
+              <div class="ad-stat">
+                <div class="ad-stat-val">One</div>
+                <div class="ad-stat-label">Control dashboard</div>
+              </div>
+              <div class="ad-stat">
+                <div class="ad-stat-val">Smart</div>
+                <div class="ad-stat-label">Contextual display</div>
+              </div>
+              <div class="ad-stat">
+                <div class="ad-stat-val">Verified</div>
+                <div class="ad-stat-label">Partner ads only</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+ 
+<!-- WORKFLOW -->
+<section class="workflow-section">
+  <div class="fade-in" style="max-width:600px;margin:0 auto 20px">
+    <div class="section-tag">✦ How It Works</div>
+    <h2 class="section-heading">One seamless ecosystem</h2>
+    <p class="section-sub" style="margin:0 auto">Every stakeholder connected, every process automated, every insight surfaced.</p>
+  </div>
+  <div class="workflow-steps">
+    <div class="workflow-step fade-in">
+      <div class="step-icon-box">🏫</div>
+      <div class="step-label">School</div>
+      <div class="step-desc">Admins set up classes, fees, and schedules in minutes</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="workflow-step fade-in">
+      <div class="step-icon-box">🤖</div>
+      <div class="step-label">Lernuz Platform</div>
+      <div class="step-desc"> IN lernuz you manage your school from one place, and surfaces insights automatically</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="workflow-step fade-in">
+      <div class="step-icon-box">👨‍👩‍👧</div>
+      <div class="step-label">Parent</div>
+      <div class="step-desc">Real-time updates, fee payment, and direct communication</div>
+    </div>
+    <div class="step-connector"></div>
+    <div class="workflow-step fade-in">
+      <div class="step-icon-box">🏦</div>
+      <div class="step-label">HNB Bank</div>
+      <div class="step-desc">Secure payment processing and financial reconciliation</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PREDICTIVE -->
+<section class="predictive-section">
+  <div class="fade-in" style="max-width:600px;margin:0 auto">
+    <div class="section-tag">✦ Smart Search</div>
+    <h2 class="section-heading">Find anything, instantly</h2>
+    <p class="section-sub" style="margin:0 auto">Predictive AI search understands context — surface students, reports, payments, or any record in milliseconds.</p>
+  </div>
+  <div class="predictive-search-demo fade-in">
+    <div class="predictive-bar">
+      <span class="predictive-icon">🔍</span>
+      <span class="predictive-text">Search <strong>students, fees, attendance</strong>...</span>
+      <span class="predictive-kbd">⌘K</span>
+    </div>
+    <div class="predictive-dropdown">
+      <div class="pred-option">
+        <div class="pred-icon" style="background:rgba(76,71,229,0.08)">👤</div>
+        <div>
+          <div class="pred-label">Kavindu Perera — Grade 10A</div>
+          <div class="pred-sublabel">Student ID: SJ-2024-1042</div>
+        </div>
+        <div class="pred-badge">Student</div>
+      </div>
+      <div class="pred-option">
+        <div class="pred-icon" style="background:rgba(245,200,66,0.1)">💳</div>
+        <div>
+          <div class="pred-label">Term 2 Fee Report — Grade 10</div>
+          <div class="pred-sublabel">Generated 2 days ago</div>
+        </div>
+        <div class="pred-badge">Report</div>
+      </div>
+      <div class="pred-option">
+        <div class="pred-icon" style="background:rgba(62,207,160,0.1)">✅</div>
+        <div>
+          <div class="pred-label">Attendance — Week 24 Summary</div>
+          <div class="pred-sublabel">97.2% avg — All grades</div>
+        </div>
+        <div class="pred-badge">Attendance</div>
+      </div>
+      <div class="pred-option">
+        <div class="pred-icon" style="background:rgba(168,85,247,0.1)">📊</div>
+        <div>
+          <div class="pred-label">Mid-term Analytics Dashboard</div>
+          <div class="pred-sublabel">AI-generated • Updated today</div>
+        </div>
+        <div class="pred-badge">Analytics</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:12px;font-size:11px;color:rgba(76,71,229,0.35)">↑ Smart Input UI — Placeholder for interaction preview</div>
+  </div>
+</section>
+ 
+<!-- METRICS -->
+<section class="metrics-section" id="metrics">
+  <div class="metrics-inner">
+    <div class="section-tag">✦ Impact</div>
+    <h2 class="section-heading">Numbers that speak</h2>
+    <p class="section-sub">Lernuz has transformed school operations from day one of deployment.</p>
+    <div class="metrics-grid">
+      <div class="metric-block">
+        <div class="metric-num">98<span class="metric-suffix">%</span></div>
+        <div class="metric-label">Attendance accuracy improvement</div>
+        <div class="metric-growth">↑ vs manual tracking</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-num">3<span class="metric-suffix">×</span></div>
+        <div class="metric-label">Faster fee collection cycles</div>
+        <div class="metric-growth">↑ with HNB integration</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-num">40<span class="metric-suffix">h</span></div>
+        <div class="metric-label">Admin hours saved per month</div>
+        <div class="metric-growth">↑ via automation</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-num">4.9<span class="metric-suffix">★</span></div>
+        <div class="metric-label">Parent satisfaction score</div>
+        <div class="metric-growth">↑ From 3.2 pre-Lernuz</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-header fade-in">
+    <div class="section-tag">✦ Testimonials</div>
+    <h2 class="section-heading">Loved by the whole school community</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Lernuz has completely changed how we run the school. What used to take hours now happens in minutes. The AI assistant is genuinely impressive."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">Photo<br>Here</div>
+        <div>
+          <div class="author-name">Br. Anthony Fernando</div>
+          <div class="author-role">Principal, St. Joseph's College</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"As a parent, I love getting instant updates on attendance and fees. Paying via HNB is so convenient — everything is in one place now."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">Photo<br>Here</div>
+        <div>
+          <div class="author-name">Nalini Jayawardena</div>
+          <div class="author-role">Parent, Grade 9 Student</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The HNB integration made fee management seamless for our finance team. Reconciliation that took 2 days now happens in real-time. Truly remarkable."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">Photo<br>Here</div>
+        <div>
+          <div class="author-name">Thilanka Ranasinghe</div>
+          <div class="author-role">Bursar, St. Joseph's College</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="fade-in">
+      <div class="section-tag" style="margin:0 auto 20px">✦ Get Started</div>
+      <h2 class="cta-heading">Ready to transform<br><em style="font-style:italic;color:var(--primary)">your school?</em></h2>
+      <p class="cta-sub">Join St. Joseph's College and the growing Lernuz ecosystem — powered by HNB Bank.</p>
+    </div>
+    <div class="cta-cards fade-in">
+      <div class="cta-card schools">
+        <div class="cta-card-icon">🏫</div>
+        <div class="cta-card-title">For Schools</div>
+        <p class="cta-card-desc">Deploy the full Lernuz platform at your institution. AI-powered, bank-integrated, and ready in days.</p>
+        <button class="cta-btn">Request a Demo →</button>
+        <div class="cta-img-placeholder">School Visual</div>
+      </div>
+      <div class="cta-card banks">
+        <div class="cta-card-icon">🏦</div>
+        <div class="cta-card-title">For Banks</div>
+        <p class="cta-card-desc" style="color:var(--text-muted)">Partner with Lernuz to embed your banking services into the school ecosystem at scale.</p>
+        <button class="cta-btn">Partner With Us →</button>
+        <div class="cta-img-placeholder">Bank Visual</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-mark">L</div>
+    Lernuz
+  </div>
+  <div class="footer-copy">© 2025 Lernuz · Built for St. Joseph's College Colombo · Powered by HNB Bank</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+    <a href="#">Documentation</a>
+  </div>
+</footer>
+ 
+<script>
+// Scroll fade
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+ 
+// Animated counters
+const counters = document.querySelectorAll('.metric-num');
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting && !e.target.dataset.animated) {
+      e.target.dataset.animated = true;
+      const txt = e.target.textContent;
+      const num = parseFloat(txt);
+      const suffix = e.target.querySelector('.metric-suffix');
+      const suffixText = suffix ? suffix.textContent : '';
+      let start = 0;
+      const step = num / 60;
+      const interval = setInterval(() => {
+        start = Math.min(start + step, num);
+        const display = num % 1 === 0 ? Math.round(start) : start.toFixed(1);
+        e.target.textContent = display;
+        if(suffix) e.target.appendChild(suffix);
+        if(start >= num) clearInterval(interval);
+      }, 16);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(el => countObs.observe(el));
+ 
+// Suggest chips
+document.querySelectorAll('.suggest-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const inp = document.querySelector('.hero-input-wrap input');
+    inp.value = chip.textContent.replace(/^[^\s]+\s/,'');
+    inp.focus();
+  });
+});
+ 
+// Parallax hero
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const glow = document.querySelector('.hero-bg-glow');
+  const glow2 = document.querySelector('.hero-bg-glow2');
+  if(glow) glow.style.transform = `translateY(${scrollY * 0.15}px)`;
+  if(glow2) glow2.style.transform = `translateY(${scrollY * 0.08}px)`;
+});
+</script>
+</body>
+</html>
