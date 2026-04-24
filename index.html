@@ -46,10 +46,47 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:72px;d
 .nav-links a{font-size:14px;color:var(--text-muted);text-decoration:none;font-weight:400;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
 .nav-cta{display:flex;align-items:center;gap:12px}
-.btn-ghost{padding:8px 20px;font-size:14px;color:var(--primary);background:transparent;border:1.5px solid rgba(76,71,229,0.3);border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;font-weight:500}
-.btn-ghost:hover{background:rgba(76,71,229,0.06);border-color:var(--primary)}
-.btn-primary{padding:9px 22px;font-size:14px;color:#1A1400;background:var(--accent-yellow);border:none;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:700;transition:all .25s;box-shadow:0 4px 20px rgba(245,193,24,0.4)}
-.btn-primary:hover{background:#FFD225;transform:translateY(-1px);box-shadow:0 8px 30px rgba(245,193,24,0.5)}
+.btn-ghost {
+  padding: 8px 20px;
+  font-size: 14px;
+  color: var(--primary);
+  background: transparent;
+  border: 1.5px solid rgba(76, 71, 229, 0.3);
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-ghost:hover {
+  background: rgba(76, 71, 229, 0.06);
+  border-color: var(--primary);
+}
+
+.btn-primary {
+  padding: 9px 22px;
+  font-size: 14px;
+  color: #1A1400;
+  background: var(--accent-yellow);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  transition: all .25s;
+  box-shadow: 0 4px 20px rgba(245, 193, 24, 0.4);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: #FFD225;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(245, 193, 24, 0.5);
+}
  
 /* HERO */
 .hero{min-height:100vh;padding:140px 48px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#F0F5FF 0%,#FEFEFF 55%,#FFFBEA 100%)}
@@ -95,15 +132,67 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:72px;d
 @keyframes progress{from{width:45%}to{width:85%}}
  
 /* TRUST STRIP */
-.trust-strip{padding:48px;background:linear-gradient(90deg,#FEFEFF 0%,#FFFDF0 50%,#FEFEFF 100%);border-top:1px solid rgba(245,193,24,0.12);border-bottom:1px solid rgba(76,71,229,0.06)}
-.trust-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
-.trust-label{font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:0.8px;text-transform:uppercase;white-space:nowrap}
-.trust-logos{display:flex;align-items:center;gap:40px}
-.logo-slot{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .3s}
-.logo-box{width:120px;height:44px;background:linear-gradient(135deg,#F0F2FF,#E8ECFF);border:1px solid rgba(76,71,229,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;filter:grayscale(1);transition:all .3s}
-.logo-slot:hover .logo-box{filter:grayscale(0);border-color:rgba(76,71,229,0.3);box-shadow:0 4px 20px rgba(76,71,229,0.15)}
-.logo-box-text{font-size:13px;font-weight:600;color:var(--text-muted);letter-spacing:0.5px}
-.logo-slot-label{font-size:10px;color:var(--text-muted);opacity:0.6;font-weight:400}
+/* ================= TRUST STRIP ================= */
+/* ================= TRUST STRIP ================= */
+.trust-strip {
+  padding: 48px;
+  background: linear-gradient(90deg, #FEFEFF 0%, #FFFDF0 50%, #FEFEFF 100%);
+  border-top: 1px solid rgba(245, 193, 24, 0.12);
+  border-bottom: 1px solid rgba(76, 71, 229, 0.06);
+}
+
+.trust-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.trust-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.trust-logos {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ================= LOGO ================= */
+.logo-slot {
+  width: 140px;              /* 🔥 fixed width */
+  height: 70px;              /* 🔥 fixed height */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* ✅ ALL LOGOS SAME SIZE */
+/* base frame (keeps alignment SAME) */
+.logo-slot {
+  width: 140px;
+  height: 120px;
+}
+
+.logo-slot img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.logo-hnb { max-height: 75px; }
+.logo-lernuz { max-height: 100px; }
+.logo-partner { max-height: 100px; }
  
 /* SECTION SHARED */
 section{padding:100px 48px}
@@ -151,7 +240,7 @@ section{padding:100px 48px}
 .feature-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:22px}
 .feature-title{font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px;letter-spacing:-0.3px}
 .feature-desc{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
-.feature-img-placeholder{background:linear-gradient(135deg,#F0F2FF,#E8ECFF);border-radius:10px;height:70px;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(76,71,229,0.4);font-weight:500;border:1px dashed rgba(76,71,229,0.15)}
+/* .feature-img-placeholder{background:linear-gradient(135deg,#F0F2FF,#E8ECFF);border-radius:10px;height:70px;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(76,71,229,0.4);font-weight:500;border:1px dashed rgba(76,71,229,0.15)} */
  
 /* DASHBOARD SHOWCASE */
 .dashboard-section{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);text-align:center;position:relative;overflow:hidden}
@@ -159,6 +248,15 @@ section{padding:100px 48px}
 .dashboard-placeholder{max-width:900px;margin:0 auto;background:linear-gradient(135deg,#E8ECFF 0%,#D8DFF8 50%,#E4E0FF 100%);border-radius:var(--radius-lg);border:1px solid rgba(76,71,229,0.15);aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;box-shadow:0 30px 100px rgba(76,71,229,0.22),0 0 0 1px rgba(76,71,229,0.08);position:relative;overflow:hidden}
 .dashboard-placeholder::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--primary),var(--primary-light),transparent)}
 .dashboard-mock-bar{position:absolute;top:0;left:0;right:0;height:40px;background:rgba(255,255,255,0.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,71,229,0.1);display:flex;align-items:center;padding:0 20px;gap:8px}
+.dashboard-img {
+  position: absolute;
+  top: 40px; /* below the mock bar */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 40px);
+  object-fit: contain; /* prevents zoom */
+  z-index: 1;
+}
 .mock-bar-dot{width:10px;height:10px;border-radius:50%}
 .placeholder-icon-lg{font-size:40px;opacity:0.3;margin-top:40px}
 .placeholder-text-lg{font-size:15px;color:rgba(76,71,229,0.5);font-weight:500}
@@ -171,6 +269,12 @@ section{padding:100px 48px}
 .bank-img-placeholder{background:linear-gradient(135deg,#FFF8E8,#FFF3D0);border:1px solid rgba(245,200,66,0.25);border-radius:var(--radius-lg);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
 .bank-img-placeholder::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-yellow),transparent)}
 .hnb-badge-overlay{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);border-radius:8px;padding:6px 12px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#8B6914;border:1px solid rgba(245,200,66,0.25)}
+.bank-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  display: block;
+}
 .hnb-dot{width:8px;height:8px;background:var(--accent-yellow);border-radius:50%}
  
 /* AD SYSTEM */
@@ -190,6 +294,63 @@ section{padding:100px 48px}
 .ad-stat{background:rgba(76,71,229,0.04);border-radius:10px;padding:14px}
 .ad-stat-val{font-size:22px;font-weight:700;color:var(--primary);font-family:'Instrument Serif',serif}
 .ad-stat-label{font-size:11px;color:var(--text-muted);font-weight:400;margin-top:2px}
+
+.ad-img-placeholder {
+    background: linear-gradient(135deg, #F0F2FF, #E8ECFF);
+    border: 1px dashed rgba(76, 71, 229, 0.2);
+    border-radius: 12px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ad-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.hidden-placeholder-text {
+    display: none;
+}
+
+.ad-banner-placeholder {
+    background: linear-gradient(135deg, rgba(245,200,66,0.12), rgba(245,200,66,0.06));
+    border: 1px dashed rgba(245,200,66,0.35);
+    border-radius: 8px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #B8940A;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 720px) {
+    .ad-body {
+        grid-template-columns: 1fr;
+    }
+    .ad-panel:first-child {
+        border-right: none;
+        border-bottom: 1px solid rgba(76,71,229,0.08);
+    }
+    .ad-section {
+        padding: 48px 20px;
+    }
+    .ad-panel {
+        padding: 24px;
+    }
+}
  
 /* WORKFLOW */
 .workflow-section{background:var(--bg2);text-align:center}
@@ -311,10 +472,7 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <div class="nav-logo-mark">
-      <svg viewBox="0 0 20 20"><path d="M3 4h6l2 4H3zM11 4h6l2 4h-6zM3 10h14l2 6H1z"/></svg>
-    </div>
-    <span class="nav-logo-text">Lernuz</span>
+    <img src="./images/lernuzbgremove (1).png" alt="Lernuz Logo" style="height: 40px; width: auto;">
   </div>
   <div class="nav-links">
     <a href="#features">Features</a>
@@ -324,8 +482,8 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
     <a href="#testimonials">Stories</a>
   </div>
   <div class="nav-cta">
-    <button class="btn-ghost">Sign In</button>
-    <button class="btn-primary">Get Started →</button>
+    <a href="https://lernuz.com/login" target="_blank" class="btn-ghost">Sign In</a>
+    <a href="https://lernuz.com/login" target="_blank" class="btn-primary">Get Started →</a>
   </div>
 </nav>
  
@@ -383,22 +541,30 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
 <!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="trust-inner">
+
     <span class="trust-label">Trusted by</span>
+
     <div class="trust-logos">
+
+      <!-- Lernuz Logo -->
       <div class="logo-slot">
-        <div class="logo-box"><span class="logo-box-text">🏫 School Logo</span></div>
-        <span class="logo-slot-label">St. Joseph's College</span>
+        <img src="./images/lernuzbgremove.png" alt="Lernuz Logo" class="logo-lernuz">
       </div>
+      
       <div class="logo-slot">
-        <div class="logo-box"><span class="logo-box-text">🏦 HNB Bank</span></div>
-        <span class="logo-slot-label">Hatton National Bank</span>
+        <img src="./images/stjosepsh.png" alt="Platform Partner" class="logo-partner">
       </div>
+      
       <div class="logo-slot">
-        <div class="logo-box"><span class="logo-box-text">🎓 Lernuz</span></div>
-        <span class="logo-slot-label">Platform Partner</span>
+        <img src="./images/hnb-logo-new.png" alt="HNB Bank Logo" class="logo-hnb">
       </div>
+
     </div>
-    <div style="font-size:13px;color:var(--text-muted);max-width:200px;line-height:1.5">Powering smarter education ecosystems across Sri Lanka</div>
+
+    <div style="font-size:13px;color:var(--text-muted);max-width:200px;line-height:1.5">
+      Powering smarter education ecosystems across Sri Lanka
+    </div>
+
   </div>
 </div>
  
@@ -507,42 +673,42 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
       <div class="feature-icon" style="background:rgba(76,71,229,0.1)">👤</div>
       <div class="feature-title">Student Management</div>
       <div class="feature-desc">Complete student profiles, academic history, health records, and family contacts in one unified view.</div>
-      <div class="feature-img-placeholder">Preview · Student Profile UI</div>
+      <!-- <div class="feature-img-placeholder">Preview · Student Profile UI</div> -->
     </div>
     <div class="feature-card fade-in">
       <div class="feature-card-glow"></div>
       <div class="feature-icon" style="background:rgba(62,207,160,0.1)">📅</div>
       <div class="feature-title">Smart Attendance</div>
       <div class="feature-desc">AI-powered biometric and QR-based attendance with real-time parent notifications and analytics.</div>
-      <div class="feature-img-placeholder">Preview · Attendance Dashboard</div>
+      <!-- <div class="feature-img-placeholder">Preview · Attendance Dashboard</div> -->
     </div>
     <div class="feature-card fade-in">
       <div class="feature-card-glow"></div>
       <div class="feature-icon" style="background:rgba(245,200,66,0.12)">💳</div>
       <div class="feature-title">HNB Fee Payments</div>
       <div class="feature-desc">Seamless fee collection via HNB Bank .</div>
-      <div class="feature-img-placeholder">Preview · Payment Flow UI</div>
+      <!-- <div class="feature-img-placeholder">Preview · Payment Flow UI</div> -->
     </div>
     <div class="feature-card fade-in">
       <div class="feature-card-glow"></div>
       <div class="feature-icon" style="background:rgba(76,71,229,0.1)">📊</div>
       <div class="feature-title">Academic Analytics</div>
       <div class="feature-desc">Deep insights into student performance, class averages, and exam trends.</div>
-      <div class="feature-img-placeholder">Preview · Analytics Chart</div>
+      <!-- <div class="feature-img-placeholder">Preview · Analytics Chart</div> -->
     </div>
     <div class="feature-card fade-in">
       <div class="feature-card-glow"></div>
       <div class="feature-icon" style="background:rgba(168,85,247,0.1)">📱</div>
       <div class="feature-title">Parent Portal</div>
       <div class="feature-desc">Mobile-first parent app for real-time updates, messaging teachers, and viewing academic progress.</div>
-      <div class="feature-img-placeholder">Preview · Parent App Screen</div>
+      <!-- <div class="feature-img-placeholder">Preview · Parent App Screen</div> -->
     </div>
     <div class="feature-card fade-in">
       <div class="feature-card-glow"></div>
       <div class="feature-icon" style="background:rgba(62,207,160,0.1)">🔔</div>
       <div class="feature-title">Smart Notifications</div>
       <div class="feature-desc">Contextual push alerts for parents, staff, and students — triggered by events, fees and other important information.</div>
-      <div class="feature-img-placeholder">Preview · Notification Feed</div>
+      <!-- <div class="feature-img-placeholder">Preview · Notification Feed</div> -->
     </div>
   </div>
 </section>
@@ -562,9 +728,8 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
       <div class="mock-bar-dot" style="background:#28c840"></div>
       <div style="flex:1;height:18px;background:rgba(76,71,229,0.06);border-radius:6px;margin-left:8px"></div>
     </div>
-    <div class="placeholder-icon-lg">🖥️</div>
-    <div class="placeholder-text-lg">Dashboard Preview</div>
-    <div class="placeholder-text-sm">Insert Dashboard PNG / Figma export here • Recommended 1440×900px</div>
+  
+    <img src="./images/dashboard.jpeg" alt="Dashboard Preview" class="dashboard-img">
   </div>
 </section>
  
@@ -572,12 +737,7 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
 <section class="bank-section" id="bank">
   <div class="bank-inner">
     <div class="fade-in">
-      <div class="bank-img-placeholder">
-        <div class="hnb-badge-overlay"><span class="hnb-dot"></span>HNB Bank Secured</div>
-        <div style="font-size:36px;opacity:0.3">💳</div>
-        <div style="font-size:14px;color:rgba(180,140,20,0.5);font-weight:500">Banking & Fee Awareness UI</div>
-        <div style="font-size:11px;color:rgba(180,140,20,0.35)">Insert Accounts Interface Preview • 4:3 ratio</div>
-      </div>
+      <img src="./images/bank.jpeg" alt="Bank UI Preview" class="bank-img">
     </div>
     <div class="fade-in">
       <div class="bank-badge">🏦 HNB Bank Integration</div>
@@ -612,55 +772,59 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
 </section>
  
 <!-- AD SYSTEM -->
+<!-- AD SYSTEM -->
 <section class="ad-section">
-    <div class="ad-inner">
-      <div class="fade-in" style="max-width:600px;margin-bottom:48px">
-        <div class="section-tag">✦ Smart Advertising</div>
-        <h2 class="section-heading">A new visibility channel for schools</h2>
-        <p class="section-sub">Lernuz enables schools to showcase trusted bank and brand messages across key touchpoints — ensuring the right information reaches the right audience at the right time.</p>
+  <div class="ad-inner">
+    <div class="fade-in" style="max-width:600px;margin-bottom:48px">
+      <div class="section-tag">✦ Smart Advertising</div>
+      <h2 class="section-heading">A new visibility channel for schools</h2>
+      <p class="section-sub">Lernuz enables schools to showcase trusted bank and brand messages across key touchpoints — ensuring the right information reaches the right audience at the right time.</p>
+    </div>
+    <div class="ad-dashboard fade-in">
+      <div class="ad-topbar">
+        <div class="ad-topbar-title">📡 Advertising Dashboard — Admin View</div>
+        <div class="ad-topbar-badge">Live · Managed by Lernuz</div>
       </div>
-      <div class="ad-dashboard fade-in">
-        <div class="ad-topbar">
-          <div class="ad-topbar-title">📡 Advertising Dashboard — Admin View</div>
-          <div class="ad-topbar-badge">Live · Managed by Lernuz</div>
-        </div>
-        <div class="ad-body">
-          <div class="ad-panel">
-            <div class="ad-panel-title">Campaign Preview</div>
-            <div class="ad-img-placeholder">
+      <div class="ad-body">
+        <div class="ad-panel">
+          <div class="ad-panel-title">Campaign Preview</div>
+          <div class="ad-img-placeholder" id="rotating-ad-container">
+            <img src="./images/ad.jpeg" alt="Ad Creative 1" class="ad-preview-image" id="rotating-ad-img">
+            <div class="hidden-placeholder-text" style="display:none; flex-direction:column; align-items:center; gap:8px;">
               <div style="font-size:28px;opacity:0.3">🖼️</div>
               <div style="font-size:12px;color:rgba(76,71,229,0.4);font-weight:500">Ad Placement Preview</div>
               <div style="font-size:10px;color:rgba(76,71,229,0.25)">Insert Ad Creative Screenshot</div>
             </div>
-            <div class="ad-banner-placeholder">
-              ↑ Ad Banner — Displayed across selected pages
-            </div>
           </div>
-          <div class="ad-panel">
-            <div class="ad-panel-title">Ad Controls</div>
-            <div class="ad-stats">
-              <div class="ad-stat">
-                <div class="ad-stat-val">Multi</div>
-                <div class="ad-stat-label">Page placements</div>
-              </div>
-              <div class="ad-stat">
-                <div class="ad-stat-val">One</div>
-                <div class="ad-stat-label">Control dashboard</div>
-              </div>
-              <div class="ad-stat">
-                <div class="ad-stat-val">Smart</div>
-                <div class="ad-stat-label">Contextual display</div>
-              </div>
-              <div class="ad-stat">
-                <div class="ad-stat-val">Verified</div>
-                <div class="ad-stat-label">Partner ads only</div>
-              </div>
+          <div class="ad-banner-placeholder">
+            ↑ Ad Banner — Displayed across selected pages
+          </div>
+        </div>
+        <div class="ad-panel">
+          <div class="ad-panel-title">Ad Controls</div>
+          <div class="ad-stats">
+            <div class="ad-stat">
+              <div class="ad-stat-val">Multi</div>
+              <div class="ad-stat-label">Page placements</div>
+            </div>
+            <div class="ad-stat">
+              <div class="ad-stat-val">One</div>
+              <div class="ad-stat-label">Control dashboard</div>
+            </div>
+            <div class="ad-stat">
+              <div class="ad-stat-val">Smart</div>
+              <div class="ad-stat-label">Contextual display</div>
+            </div>
+            <div class="ad-stat">
+              <div class="ad-stat-val">Verified</div>
+              <div class="ad-stat-label">Partner ads only</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
   
  
 <!-- WORKFLOW -->
@@ -835,14 +999,14 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
         <div class="cta-card-icon">🏫</div>
         <div class="cta-card-title">For Schools</div>
         <p class="cta-card-desc">Deploy the full Lernuz platform at your institution. AI-powered, bank-integrated, and ready in days.</p>
-        <button class="cta-btn">Request a Demo →</button>
+        <a href="https://lernuz.com/login" target="_blank" class="cta-btn" style="text-decoration: none; display: inline-block;">Request a Demo →</a>
         <div class="cta-img-placeholder">School Visual</div>
       </div>
       <div class="cta-card banks">
         <div class="cta-card-icon">🏦</div>
         <div class="cta-card-title">For Banks</div>
         <p class="cta-card-desc" style="color:var(--text-muted)">Partner with Lernuz to embed your banking services into the school ecosystem at scale.</p>
-        <button class="cta-btn">Partner With Us →</button>
+        <a href="https://lernuz.com/login" target="_blank" class="cta-btn" style="text-decoration: none; display: inline-block;">Partner With Us →</a>
         <div class="cta-img-placeholder">Bank Visual</div>
       </div>
     </div>
@@ -852,19 +1016,34 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px;display:f
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <div class="footer-mark">L</div>
-    Lernuz
+    <img src="./images/lernuzbgremove (1).png" alt="Lernuz Logo" style="height: 36px; width: auto;">
   </div>
   <div class="footer-copy">© 2025 Lernuz · Built for St. Joseph's College Colombo · Powered by HNB Bank</div>
-  <div class="footer-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
-    <a href="#">Documentation</a>
-  </div>
 </footer>
  
 <script>
+  // Rotating ads in the ad section - 3 images cycling every 2 seconds
+(function() {
+  const adImages = [
+    "./images/ad.jpeg",
+    "./images/ad2.jpeg", 
+    "./images/ad3.png"
+  ];
+  
+  let currentIndex = 0;
+  const adImgElement = document.getElementById('rotating-ad-img');
+  
+  if (adImgElement) {
+    // Function to change image
+    function rotateAdImage() {
+      currentIndex = (currentIndex + 1) % adImages.length;
+      adImgElement.src = adImages[currentIndex];
+    }
+    
+    // Set interval to change image every 2 seconds (2000ms)
+    setInterval(rotateAdImage, 2000);
+  }
+})();
 // Scroll fade
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
